@@ -5,16 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
+    <!--button to show custom dialog-->
 
-    <ImageButton
-        android:id="@+id/btnTask"
-        android:scrollbarSize="150dp"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:src="@drawable/ic_baseline_add_task_24"
-        android:layout_marginEnd="36dp"
-        android:layout_marginBottom="52dp"
-        android:text="Button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

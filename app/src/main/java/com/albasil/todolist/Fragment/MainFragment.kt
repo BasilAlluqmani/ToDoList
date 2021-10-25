@@ -11,7 +11,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.albasil.todolist.R
+import com.albasil.todolist.RecyclerAdapter
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
@@ -34,7 +37,16 @@ val current = LocalDateTime.now()
     private lateinit var taskTitle:EditText
     private lateinit var description:EditText
 
-   override fun onCreateView(
+    private  var titleList = mutableListOf<String>()
+    private var descList = mutableListOf<String>()
+    private var imageList= mutableListOf<Int>()
+
+    private lateinit var rv_recyclerView: RecyclerView
+
+    val tasks = arrayListOf<String>()
+
+
+    override fun onCreateView(
        inflater: LayoutInflater, container: ViewGroup?,
        savedInstanceState: Bundle?
    ): View? {
@@ -49,30 +61,33 @@ val current = LocalDateTime.now()
 
        }
 
+           rv_recyclerView=view.findViewById(R.id.rv_recyclerView)
+           rv_recyclerView.layoutManager = LinearLayoutManager(view.context)
+           rv_recyclerView.adapter = RecyclerAdapter(titleList,descList,imageList)
 
+
+           postToList()
 
 
        return view
    }
 
+    private fun addTitleList(title:String, description :String, image:Int){
 
-
-    fun calender_task(){
-        val c = Calendar.getInstance()
-        val day = c.get(Calendar.DAY_OF_MONTH)
-        val month = c.get(Calendar.MONTH)
-        val year = c.get(Calendar.YEAR)
-        val datePickerDialog=  DatePickerDialog(requireView().context, DatePickerDialog.OnDateSetListener {
-                view, y, m, d ->
-            dueDate = "$y/${m+1}/$d"
-
-//            calendarTask.setText(dueDate)
-
-        }, year, month, day)
-        datePickerDialog.datePicker.minDate =c.timeInMillis
-        datePickerDialog.show()
+        titleList.add(title)
+        descList.add(description)
+        imageList.add(image)
     }
 
+    private fun postToList(){
+
+        val array = arrayListOf("Task","Task","Task","Task","Task")
+        for (i in 1 ..tasks.size){
+            addTitleList(title = "Task ${tasks[i-1]}","Descripiton $i ", R.drawable.ic_baseline_bookmark_24)
+
+
+        }
+    }
 
 
    fun addTaskDailog(){
@@ -128,6 +143,12 @@ val current = LocalDateTime.now()
                ).show()
 
 
+               tasks.add("${ed_taksTitle.text}")
+
+
+               postToList()
+
+               //fun Clear
                ed_taksTitle.setText(null)
                ed_taskDescription.setText(null)
                calendarTask.setText(null)

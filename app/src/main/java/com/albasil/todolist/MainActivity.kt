@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.*
 import androidx.annotation.RequiresApi
+import com.albasil.todolist.Fragment.MainFragment
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
@@ -16,7 +17,7 @@ class MainActivity : AppCompatActivity() {
 
 
     // Date
-    val current = LocalDateTime.now()
+    /*val current = LocalDateTime.now()
     val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")
     val formatted = current.format(formatter)
 
@@ -26,7 +27,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var addTask:ImageButton
     private lateinit var taskTitle:EditText
-    private lateinit var description:EditText
+    private lateinit var description:EditText*/
 
 
 
@@ -35,19 +36,22 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val mainFragment = MainFragment()
+        supportFragmentManager.beginTransaction().replace(R.id.fragment_container,MainFragment.newInstance()).commitNow()
 
-        addTask=findViewById(R.id.btnTask)
+
+    /*    addTask=findViewById(R.id.btnTask)
 
         addTask.setOnClickListener {
             addTaskDailog()
 
 
-        }
+        }*/
 
     }
 
 
-
+/*
     fun addTaskDailog(){
         //Inflate the dialog with custom view
         val addTask = android.app.AlertDialog.Builder(this)
@@ -152,7 +156,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-
+*/
 
 
 

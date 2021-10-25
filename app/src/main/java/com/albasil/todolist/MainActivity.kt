@@ -1,15 +1,16 @@
 package com.albasil.todolist
 
+import android.app.DatePickerDialog
 import android.content.DialogInterface
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
-import android.text.InputType
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
 import android.widget.*
-import androidx.appcompat.app.AlertDialog
+import androidx.annotation.RequiresApi
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -21,6 +22,7 @@ class MainActivity : AppCompatActivity() {
 
 
    private lateinit var priority:String
+   private lateinit var dueDate :String
 
     private lateinit var addTask:ImageButton
     private lateinit var taskTitle:EditText
@@ -33,21 +35,14 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
         addTask=findViewById(R.id.btnTask)
 
         addTask.setOnClickListener {
-
-addTaskDailog()
+            addTaskDailog()
 
 
         }
-
-
-
-
-
-
-
 
     }
 
@@ -69,6 +64,25 @@ addTaskDailog()
         val ed_taksTitle:EditText=myView.findViewById(R.id.edtTitleTask)
         val ed_taskDescription:EditText=myView.findViewById(R.id.edtDescription)
 
+        val calendarTask:TextView=myView.findViewById(R.id.id_calendar)
+
+        calendarTask.setOnClickListener {
+
+            val c = Calendar.getInstance()
+            val day = c.get(Calendar.DAY_OF_MONTH)
+            val month = c.get(Calendar.MONTH)
+            val year = c.get(Calendar.YEAR)
+          val datePickerDialog=  DatePickerDialog(this, DatePickerDialog.OnDateSetListener {
+                    view, y, m, d ->
+                dueDate = "$y/${m+1}/$d"
+
+                calendarTask.setText(dueDate)
+
+            }, year, month, day)
+            datePickerDialog.datePicker.minDate =c.timeInMillis
+                datePickerDialog.show()
+        }
+
 
 
 
@@ -79,7 +93,7 @@ addTaskDailog()
                     this, " Title task : ${ed_taksTitle.text}" +
                             " \n Description ${ed_taskDescription.text} " +
                             "\n Prplaty $priority \n" +
-                            " $formatted", Toast.LENGTH_SHORT
+                            " $formatted \n Due Date $dueDate", Toast.LENGTH_SHORT
                 ).show()
             }else{
                 Toast.makeText(
@@ -139,39 +153,7 @@ addTaskDailog()
     }
 
 
-/*
-    fun addTask(){
-        val builder: android.app.AlertDialog.Builder = android.app.AlertDialog.Builder(this)
-        builder.setTitle("Add Task")
-
-        builder.setMessage("Date : $formatted")
-
-// Set up the input  description
-      var  taskTitle = EditText(this)
-// Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
-        taskTitle.setHint("Enter Task Title")
-        taskTitle.inputType = InputType.TYPE_CLASS_TEXT
-        builder.setView(taskTitle)
 
 
-        //Description title
-      var  description = EditText(this)
-        description.setHint("Enter Text")
-        description.inputType = InputType.TYPE_CLASS_TEXT
-        builder.setView(description)
-
-
-// Set up the buttons
-        builder.setPositiveButton("Save", DialogInterface.OnClickListener { dialog, which ->
-            // Here you get get input text from the Edittext
-            var _taskTitle = taskTitle.text.toString()
-            var _taskDescription = taskTitle.text.toString()
-
-            Toast.makeText(this," Title task : $_taskTitle , Description $_taskDescription $formatted",Toast.LENGTH_SHORT).show()
-        })
-        builder.setNegativeButton("Cancel", DialogInterface.OnClickListener { dialog, which -> dialog.cancel() })
-
-        builder.show()
-    }*/
 
 }

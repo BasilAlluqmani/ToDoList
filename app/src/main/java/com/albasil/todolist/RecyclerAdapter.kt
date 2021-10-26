@@ -1,7 +1,5 @@
 package com.albasil.todolist
 
-import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,10 +10,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 
 
-class RecyclerAdapter (private var titles:List<String>, private var details:List<String>, private var image:List<Int>):
+class RecyclerAdapter (private var titleList:List<String>, private var details:List<String>, private var image:List<Int>):
 RecyclerView.Adapter<RecyclerAdapter.ViewHoder>(){
-
-    inner class ViewHoder(itemView: View):RecyclerView.ViewHolder(itemView){
+//inner
+     class ViewHoder(itemView: View):RecyclerView.ViewHolder(itemView){
 
         val itemTile: TextView = itemView.findViewById(R.id.tv_title)
         val itemDetail: TextView =itemView.findViewById(R.id.tv_description)
@@ -26,9 +24,8 @@ RecyclerView.Adapter<RecyclerAdapter.ViewHoder>(){
             itemView.setOnClickListener{ v:View ->
                 val position :Int= adapterPosition
                 Toast.makeText(itemView.context,"Title ${position+1}",Toast.LENGTH_SHORT).show()
-
-
             }
+
         }
 
 
@@ -46,31 +43,26 @@ RecyclerView.Adapter<RecyclerAdapter.ViewHoder>(){
 
     override fun onBindViewHolder(holder: RecyclerAdapter.ViewHoder, position: Int) {
 
-        holder.itemTile.text= titles[position]
+        holder.itemTile.text= titleList[position]
         holder.itemDetail.text = details[position]
         holder.itemPicture.setImageResource(image[position])
-        holder.itemTile.setOnClickListener { object :View.OnClickListener{
 
-            override fun onClick(v:View?){
+
+      /*  holder.itemTile.setOnClickListener { object :View.OnClickListener{
+           override fun onClick(v:View?){
                 val activity=v!!.context as AppCompatActivity
                 val taskInfo_fragment =task_info()
                 activity.supportFragmentManager.beginTransaction().addToBackStack(null).
                 replace(R.id.res,taskInfo_fragment).commit()
+            }  }
+        }*/
 
 
-            }
-
-        }
-
-
-
-
-        }
     }
 
     override fun getItemCount(): Int {
 
-        return titles.size
+        return titleList.size
 
     }
 }

@@ -1,12 +1,14 @@
 package com.albasil.todolist
 
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 
 
@@ -47,6 +49,23 @@ RecyclerView.Adapter<RecyclerAdapter.ViewHoder>(){
         holder.itemTile.text= titles[position]
         holder.itemDetail.text = details[position]
         holder.itemPicture.setImageResource(image[position])
+        holder.itemTile.setOnClickListener { object :View.OnClickListener{
+
+            override fun onClick(v:View?){
+                val activity=v!!.context as AppCompatActivity
+                val taskInfo_fragment =task_info()
+                activity.supportFragmentManager.beginTransaction().addToBackStack(null).
+                replace(R.id.res,taskInfo_fragment).commit()
+
+
+            }
+
+        }
+
+
+
+
+        }
     }
 
     override fun getItemCount(): Int {

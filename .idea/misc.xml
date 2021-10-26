@@ -6,9 +6,11 @@
         <entry key="..\:/Users/Bojsl/ToDoList/app/src/main/res/drawable/ic_note_add_24.xml" value="0.278125" />
         <entry key="..\:/Users/Bojsl/ToDoList/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Users/Bojsl/ToDoList/app/src/main/res/layout/ad_tasks.xml" value="0.24947916666666667" />
-        <entry key="..\:/Users/Bojsl/ToDoList/app/src/main/res/layout/add_tasks.xml" value="0.10661764705882353" />
+        <entry key="..\:/Users/Bojsl/ToDoList/app/src/main/res/layout/add_tasks.xml" value="0.1" />
         <entry key="..\:/Users/Bojsl/ToDoList/app/src/main/res/layout/fragment_main.xml" value="0.2" />
+        <entry key="..\:/Users/Bojsl/ToDoList/app/src/main/res/layout/fragment_task_info.xml" value="0.1" />
         <entry key="..\:/Users/Bojsl/ToDoList/app/src/main/res/layout/item_layout.xml" value="0.264" />
+        <entry key="..\:/Users/Bojsl/ToDoList/app/src/main/res/layout/task_item_layout.xml" value="0.264" />
       </map>
     </option>
   </component>

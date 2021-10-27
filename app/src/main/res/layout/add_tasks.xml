@@ -32,6 +32,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Enter Title Task"
+            android:imeOptions="actionDone"
             android:inputType="textPersonName" />
     </LinearLayout>
 
@@ -51,6 +52,7 @@
         android:id="@+id/edtDescription"
         android:hint="Enter Description Title"
         android:inputType="textAutoComplete"
+        android:imeOptions="actionDone"
         android:layout_width="match_parent"
         android:lines="7"
         android:layout_height="wrap_content" />

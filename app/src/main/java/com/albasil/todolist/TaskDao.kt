@@ -1,7 +1,7 @@
 package com.albasil.todolist
 
 import androidx.room.*
-import com.albasil.todolist.DataTask
+import com.albasil.todolist.DB.DataTask
 
 
 @Dao
@@ -17,11 +17,11 @@ interface TaskDao {
 
 
     @Update()
-    suspend fun update(user: DataTask) {
+    suspend fun update(task: DataTask) {
     }
 
     @Delete
-    suspend fun delete(user: DataTask) {
+    suspend fun delete(task: DataTask) {
     }
 
     @Query("select * from tasks_table where idTask== :tId")

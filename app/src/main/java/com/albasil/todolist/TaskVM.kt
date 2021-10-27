@@ -1,18 +1,29 @@
 package com.albasil.todolist
 
 import android.app.Application
-import android.content.Context
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.launch
+import com.albasil.todolist.DB.AppRepo
+import com.albasil.todolist.DB.DataTask
 
 class TaskVM(context: Application) : AndroidViewModel(context){
 
-    private val repo = AppRepo(context)
+    val repo : AppRepo = AppRepo(context)
 
+    fun getAllTaskFromList(): List<DataTask>{
+
+        return repo.getAllTaskFromList()
+
+    }
+    fun insertTask(insertTask: DataTask){
+        repo.insertTask(insertTask)
+    }
+
+
+
+
+
+    /*private val repo = AppRepo(context)
     fun getAllTasks():MutableLiveData<List<DataTask>>{
-
         val tasks = MutableLiveData<List<DataTask>>()
         viewModelScope.launch {
 
@@ -24,6 +35,7 @@ class TaskVM(context: Application) : AndroidViewModel(context){
     }
     fun fillDB()= viewModelScope.launch {
         repo.fillDB()
-    }
 
+    }
+*/
 }

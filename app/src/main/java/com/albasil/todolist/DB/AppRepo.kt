@@ -11,12 +11,12 @@ class AppRepo(context: Context) {
 
     fun getAllTaskFromList(): List<DataTask> {
 
-        if (taskList.isEmpty()) {
-            taskList += DataTask(0, "HJ", "SSS","2030/05/05","2030/08/02","jjj",false)
-            taskList += DataTask(1, "HJ", "SSS","2030/05/05","2030/08/02","jjj",false)
-            taskList += DataTask(2, "HJ", "SSS","2030/05/05","2030/08/02","jjj",false)
+        /*if (taskList.isEmpty()) {
+            taskList += DataTask(0, "HJ", "SSS","2030/05/05","2030/08/02",false)
+            taskList += DataTask(1, "HJ", "SSS","2030/05/05","2030/08/02",false)
+            taskList += DataTask(2, "HJ", "SSS","2030/05/05","2030/08/02",false)
             nextIdList= 3
-        }
+        }*/
         return taskList
     }
 
@@ -32,7 +32,8 @@ class AppRepo(context: Context) {
 
     }
 
-    fun editTask(index : Int,taskTitle:String, taskDec:String,isCeck:Boolean){
+
+    fun editTask(index: Int, taskTitle:String, taskDec:String, isCeck:Boolean){
         taskList[index].titleTask=taskTitle
         taskList[index].descTask=taskDec
         taskList[index].ifCheck=isCeck

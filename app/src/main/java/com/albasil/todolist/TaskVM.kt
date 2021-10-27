@@ -1,14 +1,26 @@
 package com.albasil.todolist
 
 import android.app.Application
+import android.widget.EditText
 import androidx.lifecycle.AndroidViewModel
+import androidx.room.RoomDatabase
+import androidx.room.Update
 import com.albasil.todolist.DB.AppRepo
 import com.albasil.todolist.DB.DataTask
 
 class TaskVM(context: Application) : AndroidViewModel(context){
 
+
     val repo : AppRepo = AppRepo(context)
 
+
+
+    init {
+
+    }
+    fun getAllTasks(){
+        val taskDao:RoomDatabase
+    }
     fun getAllTaskFromList(): List<DataTask>{
 
         return repo.getAllTaskFromList()
@@ -18,7 +30,9 @@ class TaskVM(context: Application) : AndroidViewModel(context){
         repo.insertTask(insertTask)
     }
 
-
+  fun update(update: DataTask ){
+      //repo.editTask()
+}
 
 
 

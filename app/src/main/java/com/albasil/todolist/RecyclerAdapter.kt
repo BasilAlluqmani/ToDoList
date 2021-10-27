@@ -47,6 +47,7 @@ class RecyclerAdapter(private var taskList: List<DataTask>) : RecyclerView.Adapt
 //---------------------------------------------------------------------------------------
 
 
+
         }
         holder.itemView.setOnClickListener { view->
 

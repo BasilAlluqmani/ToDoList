@@ -8,9 +8,10 @@
 
     <TextView
         android:id="@+id/tvDateToday"
+        android:textSize="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Date :" />
+        android:text="Date :" />
 
 
 
@@ -22,7 +23,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Title Task :" />
+            android:text="Title Task :" />
 
 
 
@@ -46,7 +47,8 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="Title Task :" />
+        android:text="Title Task :" />
+
     <EditText
         android:textSize="20dp"
         android:id="@+id/edtDescription"
@@ -57,59 +59,6 @@
         android:lines="7"
         android:layout_height="wrap_content" />
     </LinearLayout>
-
-
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_height="wrap_content">
-
-        <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="match_parent"
-            android:gravity="center"
-            android:padding="5dp"
-            android:id="@+id/id_radioGrop"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <RadioButton android:id="@+id/radio_l"
-                android:layout_width="wrap_content"
-                android:layout_margin="10dp"
-
-                android:layout_height="wrap_content"
-                android:text="Low"
-                android:textColor="@color/purple_700"
-                android:textSize="15dp"
-                android:onClick="onRadioButtonClicked"/>
-
-            <RadioButton
-
-                android:layout_margin="10dp"
-                android:id="@+id/radio_m"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Mideam"
-                android:textColor="@color/purple_700"
-                android:textSize="15dp"
-                android:onClick="onRadioButtonClicked"/>
-
-            <RadioButton
-                android:layout_margin="10dp"
-
-                android:id="@+id/radio_h"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/purple_700"
-                android:textSize="15dp"
-                android:text="HIGTH"
-                android:onClick="onRadioButtonClicked"/>
-        </RadioGroup>
-
-    </LinearLayout>
-
 
 
 

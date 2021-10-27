@@ -29,7 +29,7 @@ class MainFragment : Fragment() {
 
     // Date
     val current = LocalDateTime.now()
-    val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")
+    val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
     val formatted = current.format(formatter)
 
 
@@ -47,6 +47,7 @@ class MainFragment : Fragment() {
     private lateinit var  ed_taksTitle: EditText
     private lateinit var ed_taskDescription: EditText
     private lateinit var calendarTask: TextView
+
 
     //Insert to list
    private lateinit var insertTask: DataTask
@@ -69,6 +70,7 @@ class MainFragment : Fragment() {
 
         addTask= view.findViewById(R.id.btnTask)
 
+
         val mainViewModel = ViewModelProvider(this).get(TaskVM::class.java)
 
 
@@ -89,8 +91,8 @@ class MainFragment : Fragment() {
 
 
         //show all data
-        mainViewModel.getAllTaskFromList()
-        Log.e("checked", "1 ${mainViewModel.getAllTaskFromList()[0].titleTask}")
+     //   mainViewModel.getAllTaskFromList()
+       // Log.e("checked", "1 ${mainViewModel.getAllTaskFromList()[0].titleTask}")
 
     }
 
@@ -108,6 +110,8 @@ class MainFragment : Fragment() {
 
         val Save: Button = myView.findViewById(R.id.btnSave)
         val cancel: Button = myView.findViewById(R.id.btnCancel)
+
+
         val dateAlerAddTask: TextView = myView.findViewById(R.id.tvDateToday)
         dateAlerAddTask.setText("Date  $formatted")
 
@@ -115,7 +119,6 @@ class MainFragment : Fragment() {
          ed_taksTitle = myView.findViewById(R.id.edtTitleTask)
          ed_taskDescription = myView.findViewById(R.id.edtDescription)
          calendarTask = myView.findViewById(R.id.id_calendar)
-        priority = "low"
 
 
         calendarTask.setOnClickListener {
@@ -142,13 +145,13 @@ class MainFragment : Fragment() {
 
             if (ed_taksTitle.text.isNotEmpty()
                 && ed_taskDescription.text.isNotEmpty()
-                && priority.isNotEmpty() && calendarTask.text.isNotEmpty()
+                && calendarTask.text.isNotEmpty()
             ) {
                 //delete...
                 Toast.makeText(
                     context, " Title task : ${ed_taksTitle.text}" +
                             " \n Description ${ed_taskDescription.text} " +
-                            "\n Prplaty $priority \n" +
+
                             " $formatted \n Due Date $dueDate", Toast.LENGTH_SHORT).show()
 
 
@@ -156,9 +159,7 @@ class MainFragment : Fragment() {
                  insertTask = DataTask(count,"${ed_taksTitle.text}",
                     "${ed_taskDescription.text}",
                      "$formatted",
-                     "$dueDate",
-                     "${priority}"
-                 ,false)
+                     "$dueDate",false)
 
                 mainViewModel.insertTask(insertTask)
 
@@ -168,7 +169,7 @@ class MainFragment : Fragment() {
 
             } else {
                 Toast.makeText(
-                    context, " Please Compleat  ", Toast.LENGTH_SHORT
+                    context, " Please Complete  ", Toast.LENGTH_SHORT
                 ).show()
             }
         }
@@ -189,40 +190,5 @@ class MainFragment : Fragment() {
 
     }
 
-/*
-    fun priority(view: View) {
-        if (view is RadioButton) {
-            // Is the button now checked?
-            val checked = view.isChecked
-            // Check which radio button was clicked
-            when (view.getId()) {
-                R.id.radio_l ->
-                    if (checked) {
 
-                        priority = "Low"
-                        Log.e("Priority", priority)
-
-                    }
-                R.id.radio_m ->
-                    if (checked) {
-                        priority = "Mid"
-
-                        Log.e("Priority", priority)
-
-                    }
-
-                R.id.radio_h ->
-                    if (checked) {
-
-                        priority = "Height"
-
-
-                        Log.e("checked", priority)
-                        // Ninjas rule
-                    }
-            }
-        }
-    }
-
-*/
 }

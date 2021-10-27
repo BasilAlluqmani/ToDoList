@@ -16,6 +16,7 @@ import com.albasil.todolist.InformationTaskViewModel
 import com.albasil.todolist.R
 import kotlinx.android.synthetic.main.add_tasks.*
 import kotlinx.android.synthetic.main.information_task_fragment.*
+import kotlinx.android.synthetic.main.task_item_layout.*
 import kotlinx.coroutines.NonCancellable.cancel
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -99,12 +100,6 @@ class InformationTaskFragment : Fragment() {
     calendar()
 
         }
-
-
-
-
-       
-
 
         deleteTaskButton.setOnClickListener {
 

@@ -141,18 +141,15 @@ class MainFragment : Fragment() {
 
         Save.setOnClickListener {
 
-
             if (ed_taksTitle.text.isNotEmpty()
-                && ed_taskDescription.text.isNotEmpty()
+              //  && ed_taskDescription.text.isNotEmpty()
                 && calendarTask.text.isNotEmpty()
             ) {
                 //delete...
                 Toast.makeText(
                     context, " Title task : ${ed_taksTitle.text}" +
                             " \n Description ${ed_taskDescription.text} " +
-
                             " $formatted \n Due Date $dueDate", Toast.LENGTH_SHORT).show()
-
 
                 //Insert to list var insertTask
                  insertTask = DataTask(count,"${ed_taksTitle.text}",
@@ -176,7 +173,6 @@ class MainFragment : Fragment() {
         addTask.setNegativeButton(
             "Cancel",
             DialogInterface.OnClickListener { dialog, which -> dialog.cancel() })
-
         addTask.show()//.window?.setBackgroundDrawableResource(R.drawable.ic_launcher_foreground)
 
     }

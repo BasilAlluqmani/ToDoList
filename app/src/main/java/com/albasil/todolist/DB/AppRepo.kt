@@ -27,10 +27,7 @@ class AppRepo(context: Context) {
 
     }
 
-    fun deleteTask(index : Int){
-        taskList.removeAt(index)
-
-    }
+    fun deleteTask(index : Int){ taskList.removeAt(index) }
 
 
     fun editTask(index: Int, taskTitle:String, taskDec:String, isCeck:Boolean,taskDueDate:String){

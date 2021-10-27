@@ -18,11 +18,6 @@ class InformationTaskViewModel(context: Application) : AndroidViewModel(context)
         repo.deleteTask(index)
 
 
-        if(index <= -1){
-
-        }else{
-
-        }
     }
 
 

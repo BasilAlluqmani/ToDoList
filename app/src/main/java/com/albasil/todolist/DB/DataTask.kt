@@ -16,7 +16,7 @@ data class DataTask(
     var titleTask: String,
     var descTask: String,
     val creation_date: String,
-    val due_date: String,
+    var due_date: String,
 
     var ifCheck:Boolean
 ) : Parcelable {}

@@ -66,7 +66,7 @@
                     android:textSize="25sp" />
 
                 <TextView
-                    android:id="@+id/tv_description"
+                    android:id="@+id/tv_creationDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:hint="Creation Date"
@@ -76,7 +76,7 @@
                     android:textSize="20dp" />
 
                 <TextView
-                    android:id="@+id/tv_proiorty"
+                    android:id="@+id/tv_dueDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:hint="Due Date:"

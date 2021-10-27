@@ -58,7 +58,6 @@ class InformationTaskFragment : Fragment() {
     private lateinit var upDate_DueDate: ImageButton
 
 
-    lateinit var inputGolobal:String
 
 
     override fun onCreateView(
@@ -89,6 +88,11 @@ class InformationTaskFragment : Fragment() {
         val args = arguments
         var inputTask = args?.getParcelable<DataTask>("taskKey")
 
+        taskTitleInfo.setText(inputTask?.titleTask)
+        taskDescriptionInfo.setText(inputTask?.descTask)
+        taskCreationTV.setText(inputTask?.creation_date)
+        taskDueDateTV.setText(inputTask?.due_date)
+
 
         upDate_DueDate.setOnClickListener{
 
@@ -99,20 +103,7 @@ class InformationTaskFragment : Fragment() {
 
 
 
-        taskTitleInfo.setText(inputTask?.titleTask)
-        taskDescriptionInfo.setText(inputTask?.descTask)
-        taskCreationTV.setText(inputTask?.creation_date)
-        taskDueDateTV.setText(inputTask?.due_date)
-
-
-        if (taskDueDateTV.text==formatted){
-
-            Toast.makeText(
-                context, " ITS WORKING", Toast.LENGTH_SHORT).show()
-        }else{
-            Toast.makeText(
-                context, " ITS not WORKING", Toast.LENGTH_SHORT).show()        }
-
+       
 
 
         deleteTaskButton.setOnClickListener {
@@ -125,10 +116,6 @@ class InformationTaskFragment : Fragment() {
 
         editTaskButton.setOnClickListener {
 
-            if(formatted==taskDueDateTV.text){
-
-            }
-
 
             if (taskTitleInfo.text.isNotEmpty()){
 
@@ -137,8 +124,8 @@ class InformationTaskFragment : Fragment() {
                         dataTask.idTask,
                         "${taskTitleInfo.text}",
                         "${taskDescriptionInfo.text}",
-                        dataTask.ifCheck
-
+                        dataTask.ifCheck,
+                        "${tvDueDate.text}"
                     )
 
                     activity?.apply {

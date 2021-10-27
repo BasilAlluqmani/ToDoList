@@ -33,10 +33,11 @@ class AppRepo(context: Context) {
     }
 
 
-    fun editTask(index: Int, taskTitle:String, taskDec:String, isCeck:Boolean){
+    fun editTask(index: Int, taskTitle:String, taskDec:String, isCeck:Boolean,taskDueDate:String){
         taskList[index].titleTask=taskTitle
         taskList[index].descTask=taskDec
         taskList[index].ifCheck=isCeck
+        taskList[index].due_date=taskDueDate
 
 
     }

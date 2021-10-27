@@ -40,7 +40,6 @@ class MainFragment : Fragment() {
     val year = c.get(Calendar.YEAR)
 
 
-    private lateinit var priority: String
     private lateinit var dueDate: String
 
    private lateinit var addTask: ImageButton

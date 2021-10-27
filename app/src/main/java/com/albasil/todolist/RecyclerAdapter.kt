@@ -37,12 +37,12 @@ class RecyclerAdapter(private var taskList: List<DataTask>) : RecyclerView.Adapt
             if (holder.clickCheckBox.isChecked){
                 task.ifCheck=true
                 holder.itemIdXML.setBackgroundColor(Color.GRAY)
-                AppRepo(holder.itemView.context).editTask(task.idTask,task.titleTask,task.descTask,true)
+                AppRepo(holder.itemView.context).editTask(task.idTask,task.titleTask,task.descTask,true,task.due_date)
 
             }else{
                 task.ifCheck=true
                 holder.itemIdXML.setBackgroundColor(Color.WHITE)
-                AppRepo(holder.itemView.context).editTask(task.idTask,task.titleTask,task.descTask,false)
+                AppRepo(holder.itemView.context).editTask(task.idTask,task.titleTask,task.descTask,false,task.due_date)
             }
 //---------------------------------------------------------------------------------------
 
@@ -69,15 +69,17 @@ class RecyclerAdapter(private var taskList: List<DataTask>) : RecyclerView.Adapt
     override fun getItemCount(): Int {
       return taskList.size
     }
-//inner
+
 
 }
 
 class TaskViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     val taskTitle : TextView =  itemView.findViewById(R.id.tv_title)
-    val taskCreaiton : TextView =  itemView.findViewById(R.id.tv_description)
-    val taskDue:TextView= itemView.findViewById(R.id.tv_proiorty)
+    val taskCreaiton : TextView =  itemView.findViewById(R.id.tv_creationDate)//اعدل
+    val taskDue:TextView= itemView.findViewById(R.id.tv_dueDate)//اعدل
+
+
 
     var clickCheckBox : CheckBox=itemView.findViewById(R.id.checkBoxClick)
 

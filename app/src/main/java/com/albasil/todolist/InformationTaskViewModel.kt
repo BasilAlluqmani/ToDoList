@@ -27,9 +27,9 @@ class InformationTaskViewModel(context: Application) : AndroidViewModel(context)
 
 
 
-    fun editTask(index : Int, taskTitle:String, taskDec:String,isCheck:Boolean){
+    fun editTask(index : Int, taskTitle:String, taskDec:String,isCheck:Boolean,taskDueDate:String){
 
-        repo.editTask(index,taskTitle,taskDec,isCheck )
+        repo.editTask(index,taskTitle,taskDec,isCheck,taskDueDate)
 
 
     }

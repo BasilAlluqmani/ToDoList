@@ -14,7 +14,6 @@ import kotlinx.coroutines.launch
 
 class TaskVM(context: Application) : AndroidViewModel(context){
 
-
     val repo : AppRepo = AppRepo(context)
 
     fun getAllTasks(): MutableLiveData<List<DataTask>> {
@@ -27,6 +26,7 @@ class TaskVM(context: Application) : AndroidViewModel(context){
         return tasks
     }
 
+    //Done
     // add to room database
     fun addTask(_insertTask: DataTask){
         viewModelScope.launch (Dispatchers.IO){
@@ -37,11 +37,11 @@ class TaskVM(context: Application) : AndroidViewModel(context){
     }
 
 
-    fun getAllTaskFromList(): List<DataTask>{
+ /*   fun getAllTaskFromList(): List<DataTask>{
 
         return repo.getAllTaskFromList()
 
-    }
+    }*/
     fun insertTask(insertTask: DataTask){
         repo.insertTask(insertTask)
     }
@@ -49,6 +49,7 @@ class TaskVM(context: Application) : AndroidViewModel(context){
 
     fun fillDB()= viewModelScope.launch {
         //repo.fillDB()
+        repo.getAllTasks()
 
     }
 

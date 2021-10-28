@@ -21,11 +21,13 @@ class AppRepo(context: Context) {
 
     //from room database
         suspend fun getAllTasks(): List<DataTask> = withContext(Dispatchers.IO) {
-    //suspend fun getAllTasks(task:DataTask): List<DataTask> = withContext(Dispatchers.IO) {
 
         appDB.taskDao.getAllTasks()
     }
-    fun getAllTaskFromList(): List<DataTask> {
+
+
+
+   /* fun getAllTaskFromList(): List<DataTask> {
 
         /*if (taskList.isEmpty()) {
             taskList += DataTask(0, "HJ", "SSS","2030/05/05","2030/08/02",false)
@@ -35,7 +37,7 @@ class AppRepo(context: Context) {
         }*/
         return taskList
     }
-
+*/
 
     fun insertTask(itemTask : DataTask){
         taskList += itemTask
@@ -48,7 +50,10 @@ class AppRepo(context: Context) {
 
     }
 
-    fun deleteTask(index : Int){ taskList.removeAt(index) }
+    fun deleteTask(task: DataTask){
+        //taskList.removeAt(task)
+
+    }
 
 
     fun editTask(index: Int, taskTitle:String, taskDec:String, isCeck:Boolean,taskDueDate:String){
@@ -64,8 +69,8 @@ class AppRepo(context: Context) {
 
    // private val appDB = AppDataBase.getAppDataBase(context)!!
 
-
-   /* suspend fun fillDB() = withContext(Dispatchers.IO) {
+/*
+   suspend fun fillDB() = withContext(Dispatchers.IO) {
         val dataDB = appDB.taskDao.getAllTasks()
         if (dataDB.isEmpty()) {
             for (i in 1..10) {
@@ -80,6 +85,6 @@ class AppRepo(context: Context) {
                 appDB.taskDao.insert(user)
             }
         }
-    }*/
-
+    }
+*/
 }

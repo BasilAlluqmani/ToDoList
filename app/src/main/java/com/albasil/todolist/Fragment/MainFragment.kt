@@ -87,18 +87,33 @@ class MainFragment : Fragment() {
 
         linearLayoutBtnTask= view.findViewById(R.id.linearLayoutBtnTask)
 
+        mainViewModel.fillDB()
+
+            rv_recyclerView = view.findViewById(R.id.rv_recyclerView)
 
 
 
-        rv_recyclerView = view.findViewById(R.id.rv_recyclerView)
-        rv_recyclerView.adapter = RecyclerAdapter(mainViewModel.getAllTaskFromList())
+            mainViewModel.getAllTasks().observe(viewLifecycleOwner,  {
+                rv_recyclerView.adapter=RecyclerAdapter(it)})
+
+
+
         rv_recyclerView.layoutManager = LinearLayoutManager(view.context)
+
+
+
 
 
 
         linearLayoutBtnTask.setOnClickListener {
 
+
+
             addTaskDailog(mainViewModel)
+
+            mainViewModel.getAllTasks().observe(viewLifecycleOwner,  {
+                rv_recyclerView.adapter=RecyclerAdapter(it)})
+
             //update list after add
            // rv_recyclerView.adapter = RecyclerAdapter(mainViewModel.getAllTaskFromList())
 
@@ -202,6 +217,9 @@ class MainFragment : Fragment() {
                 //to insert to database
                 insertDateToDatabase(mainViewModel,ed_taksTitle.text.toString(),ed_taskDescription.text.toString())
 
+
+
+                mainViewModel.getAllTasks()
 
                 //fun Clear
                 clearEditText()

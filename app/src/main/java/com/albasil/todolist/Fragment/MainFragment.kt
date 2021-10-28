@@ -42,7 +42,7 @@ class MainFragment : Fragment() {
 
     private lateinit var dueDate: String
 
-   private lateinit var addTask: ImageButton
+   private lateinit var linearLayoutBtnTask: LinearLayout
     private lateinit var  ed_taksTitle: EditText
     private lateinit var ed_taskDescription: EditText
     private lateinit var calendarTask: TextView
@@ -67,7 +67,7 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        addTask= view.findViewById(R.id.btnTask)
+        linearLayoutBtnTask= view.findViewById(R.id.linearLayoutBtnTask)
 
 
         val mainViewModel = ViewModelProvider(this).get(TaskVM::class.java)
@@ -79,7 +79,7 @@ class MainFragment : Fragment() {
 
 
 
-        addTask.setOnClickListener {
+        linearLayoutBtnTask.setOnClickListener {
 
             addTaskDailog(mainViewModel)
             //update list after add

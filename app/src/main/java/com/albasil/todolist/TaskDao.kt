@@ -9,8 +9,7 @@ interface TaskDao {
 
 
     @Insert
-    suspend fun insert(data_task: DataTask) {
-    }
+    suspend fun insert(data_task: DataTask)
 
    @Query("select * From tasks_table ")
     suspend fun getAllTasks() : List<DataTask>

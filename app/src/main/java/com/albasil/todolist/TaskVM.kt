@@ -3,24 +3,40 @@ package com.albasil.todolist
 import android.app.Application
 import android.widget.EditText
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import androidx.room.RoomDatabase
 import androidx.room.Update
 import com.albasil.todolist.DB.AppRepo
 import com.albasil.todolist.DB.DataTask
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class TaskVM(context: Application) : AndroidViewModel(context){
 
 
     val repo : AppRepo = AppRepo(context)
 
-
-
-    init {
-
-    }
-    fun getAllTasks(){
+    fun getAllTasks(): MutableLiveData<List<DataTask>> {
         val taskDao:RoomDatabase
+
+        val tasks = MutableLiveData<List<DataTask>>()
+        viewModelScope.launch {
+            tasks.postValue(repo.getAllTasks())
+        }
+        return tasks
     }
+
+    // add to room database
+    fun addTask(_insertTask: DataTask){
+        viewModelScope.launch (Dispatchers.IO){
+            repo.insertTaskToDB(_insertTask)
+
+        }
+
+    }
+
+
     fun getAllTaskFromList(): List<DataTask>{
 
         return repo.getAllTaskFromList()
@@ -30,14 +46,20 @@ class TaskVM(context: Application) : AndroidViewModel(context){
         repo.insertTask(insertTask)
     }
 
-  fun update(update: DataTask ){
+
+    fun fillDB()= viewModelScope.launch {
+        //repo.fillDB()
+
+    }
+
+
+    fun update(update: DataTask ){
       //repo.editTask()
 }
 
 
 
-    /*private val repo = AppRepo(context)
-    fun getAllTasks():MutableLiveData<List<DataTask>>{
+   /* fun getAllTasks(): MutableLiveData<List<DataTask>> {
         val tasks = MutableLiveData<List<DataTask>>()
         viewModelScope.launch {
 
@@ -46,10 +68,10 @@ class TaskVM(context: Application) : AndroidViewModel(context){
 
         }
         return tasks
-    }
-    fun fillDB()= viewModelScope.launch {
-        repo.fillDB()
+    }*/
 
-    }
-*/
+
+
+
+
 }

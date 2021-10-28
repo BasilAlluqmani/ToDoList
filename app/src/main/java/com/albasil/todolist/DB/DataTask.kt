@@ -12,7 +12,7 @@ import java.util.*
 data class DataTask(
     @PrimaryKey(autoGenerate = true)
 //   @ColumnInfo(name = "id")
-    val idTask: Int,
+    val idTask: Int=0,
     var titleTask: String,
     var descTask: String,
     val creation_date: String,

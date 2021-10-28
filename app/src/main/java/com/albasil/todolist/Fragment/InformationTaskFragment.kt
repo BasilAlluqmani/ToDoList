@@ -96,7 +96,22 @@ class InformationTaskFragment : Fragment() {
 
 
         upDate_DueDate.setOnClickListener{
+/*
+            if (formatted.toLong() ==taskDueDateTV.text.toString().toLong() ){
 
+
+                Toast.makeText(context,"if ${formatted.toLong()}  and " +
+                        "${taskDueDateTV.text.toString().toLong()}",Toast.LENGTH_SHORT)
+            }else{
+
+
+                Toast.makeText(context,"elsee   and " +
+                        "${taskDueDateTV.text.toString().toLong()}",Toast.LENGTH_SHORT)
+
+
+            }
+
+ */
     calendar()
 
         }

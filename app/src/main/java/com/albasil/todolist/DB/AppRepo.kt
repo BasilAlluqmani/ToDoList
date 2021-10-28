@@ -1,14 +1,30 @@
 package com.albasil.todolist.DB
 
 import android.content.Context
+import androidx.lifecycle.LiveData
+import com.albasil.todolist.TaskDao
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 class AppRepo(context: Context) {
+   // class AppRepo (private val taskDao: TaskDao){
+
+    private val appDB = AppDataBase.getAppDataBase(context)!!
+
+
+
     companion object{
         var taskList = mutableListOf<DataTask>()
         var nextIdList = 0
     }
 
 
+    //from room database
+        suspend fun getAllTasks(): List<DataTask> = withContext(Dispatchers.IO) {
+    //suspend fun getAllTasks(task:DataTask): List<DataTask> = withContext(Dispatchers.IO) {
+
+        appDB.taskDao.getAllTasks()
+    }
     fun getAllTaskFromList(): List<DataTask> {
 
         /*if (taskList.isEmpty()) {
@@ -27,6 +43,11 @@ class AppRepo(context: Context) {
 
     }
 
+    suspend fun insertTaskToDB(addTask: DataTask){
+        appDB.taskDao.insert(addTask)
+
+    }
+
     fun deleteTask(index : Int){ taskList.removeAt(index) }
 
 
@@ -40,15 +61,11 @@ class AppRepo(context: Context) {
     }
 
 
-/*
-    private val appDB = AppDataBase.getAppDataBase(context)!!
+
+   // private val appDB = AppDataBase.getAppDataBase(context)!!
 
 
-    suspend fun getAllTasks(): List<DataTask> = withContext(Dispatchers.IO) {
-
-        appDB.taskDao.getAllTasks()
-    }
-    suspend fun fillDB() = withContext(Dispatchers.IO) {
+   /* suspend fun fillDB() = withContext(Dispatchers.IO) {
         val dataDB = appDB.taskDao.getAllTasks()
         if (dataDB.isEmpty()) {
             for (i in 1..10) {
@@ -56,7 +73,9 @@ class AppRepo(context: Context) {
                     idTask =  i,
                     titleTask = "Tiltle $i",
                     descTask = "Description $i",
-                    priority= "priority : mid"
+                    due_date = "55555555",
+                    ifCheck = false,
+                    creation_date = "2020/08/23"
                 )
                 appDB.taskDao.insert(user)
             }

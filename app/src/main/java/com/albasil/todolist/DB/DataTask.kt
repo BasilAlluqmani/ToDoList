@@ -10,9 +10,8 @@ import java.util.*
 @Parcelize
 @Entity(tableName = "tasks_table")
 data class DataTask(
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey(autoGenerate = true) val idTask: Int=0,
 //   @ColumnInfo(name = "id")
-    val idTask: Int=0,
     var titleTask: String,
     var descTask: String,
     val creation_date: String,

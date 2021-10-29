@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.albasil.todolist.DB.DataTask
 import com.albasil.todolist.InformationTaskViewModel
 import com.albasil.todolist.R
+import com.albasil.todolist.task_info
 import kotlinx.android.synthetic.main.information_task_fragment.*
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -66,7 +67,13 @@ class InformationTaskFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
+        // viewModel
         viewModel = ViewModelProvider(this).get(InformationTaskViewModel::class.java)
+        //to pass data
+        val args = arguments
+        var inputTask = args?.getParcelable<DataTask>("taskKey")
+
 
         taskTitleInfo = view.findViewById(R.id.edTaskTitle)
         taskDescriptionInfo = view.findViewById(R.id.edTaskDescription)
@@ -80,9 +87,6 @@ class InformationTaskFragment : Fragment() {
         // viewModel
         taskDescriptionInfo = view.findViewById(R.id.edTaskDescription)
 
-        //to pass data
-        val args = arguments
-        var inputTask = args?.getParcelable<DataTask>("taskKey")
 
         taskTitleInfo.setText(inputTask?.titleTask)
         taskDescriptionInfo.setText(inputTask?.descTask)
@@ -106,24 +110,18 @@ class InformationTaskFragment : Fragment() {
 
         updateTaskButton.setOnClickListener {
 
-
             if (taskTitleInfo.text.isNotEmpty()){
-
-                var upDateDateTask=DataTask(40,
-                    "${taskTitleInfo}",
-                    "$taskDescriptionInfo",
-                    "${taskCreationTV.text}",
-                    "${taskDueDateTV.text}",false)
+              inputTask?.let { upDateTask ->
 
 
-               // viewModel.updateTask(upDateDateTask)
+                  inputTask.titleTask=taskTitleInfo.text.toString()
+                  inputTask.due_date=taskDueDateTV.text.toString()
+                  inputTask.descTask=taskDescriptionInfo.text.toString()
+
+                  viewModel.updateTask(inputTask)
 
 
-                Toast.makeText(view.context,"T ${upDateDateTask.idTask.toString()}  due${upDateDateTask.due_date}",Toast.LENGTH_SHORT).show()
-
-              /*  inputTask?.let { dataTask ->
-                    viewModel.updateTask(upDataTask)
-                    /*viewModel.editTask(
+                 /*   viewModel.updateTask(
                         dataTask.idTask,
                         "${taskTitleInfo.text}",
                         "${taskDescriptionInfo.text}",
@@ -138,7 +136,7 @@ class InformationTaskFragment : Fragment() {
                             .commit()
                     }
 
-                }*/
+                }
             }else{
 
                 Toast.makeText(view.context,"الرجاء عدم ترك الحقل فارغ",Toast.LENGTH_SHORT).show()

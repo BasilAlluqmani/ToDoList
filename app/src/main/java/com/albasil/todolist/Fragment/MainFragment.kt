@@ -86,7 +86,7 @@ class MainFragment : Fragment() {
 
 
         mainViewModel.getAllTasks().observe(viewLifecycleOwner, {
-            rv_recyclerView.adapter = RecyclerAdapter(it)
+            rv_recyclerView.adapter = RecyclerAdapter(it,mainViewModel)
         })
 
 
@@ -99,7 +99,7 @@ class MainFragment : Fragment() {
             addTaskDailog(mainViewModel)
 
             mainViewModel.getAllTasks().observe(viewLifecycleOwner, {
-                rv_recyclerView.adapter = RecyclerAdapter(it)
+                rv_recyclerView.adapter = RecyclerAdapter(it,mainViewModel)
             })
 
             //update list after add
@@ -232,7 +232,7 @@ class MainFragment : Fragment() {
 
                 //رتب الكود
                 mainViewModel.getAllTasks().observe(viewLifecycleOwner,  {
-                    rv_recyclerView.adapter=RecyclerAdapter(it)})
+                    rv_recyclerView.adapter=RecyclerAdapter(it,mainViewModel)})
                 //search about notifyDataSetChanged
                 rv_recyclerView.adapter?.notifyDataSetChanged()
 

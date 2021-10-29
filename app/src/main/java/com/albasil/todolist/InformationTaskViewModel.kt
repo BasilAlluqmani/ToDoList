@@ -27,8 +27,8 @@ class InformationTaskViewModel(context: Application) : AndroidViewModel(context)
         repo.editTask(index, taskTitle, taskDec, isCheck, taskDueDate)
     }
 
-    suspend fun updateTask(task: DataTask) {
-        viewModelScope.launch(Dispatchers.IO) {
+     fun updateTask(task: DataTask) {
+        viewModelScope.launch {
             repo.updateTask(task)
         }
 

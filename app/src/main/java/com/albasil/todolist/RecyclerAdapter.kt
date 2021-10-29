@@ -16,7 +16,7 @@ import com.albasil.todolist.DB.DataTask
 import com.albasil.todolist.Fragment.InformationTaskFragment
 
 
-class RecyclerAdapter(private var taskList: List<DataTask>) : RecyclerView.Adapter<TaskViewHolder>() {
+class RecyclerAdapter(private var taskList: List<DataTask>,var mainView:TaskVM) : RecyclerView.Adapter<TaskViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {
         val view =
             LayoutInflater.from(parent.context).inflate(R.layout.task_item_layout, parent, false)
@@ -31,25 +31,37 @@ class RecyclerAdapter(private var taskList: List<DataTask>) : RecyclerView.Adapt
         holder.taskCreaiton.text = task.creation_date
         holder.taskDue.text =task.due_date
 
+//        holder.clickCheckBox.isChecked
+
+        if (task.ifCheck){
+            holder.clickCheckBox.isChecked=true
+            holder.itemIdXML.setBackgroundColor(Color.GRAY)
+
+
+        }else{
+
+            holder.clickCheckBox.isChecked=false
+            holder.itemIdXML.setBackgroundColor(Color.WHITE)
+        }
         //-----------------------------------------------------------------------------
         holder.clickCheckBox.setOnClickListener { clicked->
-
 
             if (holder.clickCheckBox.isChecked){
                 task.ifCheck=true
                 holder.itemIdXML.setBackgroundColor(Color.GRAY)
-              //  AppRepo(holder.itemView.context).editTask(task.idTask,task.titleTask,task.descTask,true,task.due_date)
+
+                mainView.update(task)
 
             }else{
-                task.ifCheck=true
+                task.ifCheck=false
+
                 holder.itemIdXML.setBackgroundColor(Color.WHITE)
-               // AppRepo(holder.itemView.context).editTask(task.idTask,task.titleTask,task.descTask,false,task.due_date)
+                mainView.update(task)
+
             }
-//---------------------------------------------------------------------------------------
-
-
 
         }
+
         holder.itemView.setOnClickListener { view->
 
             val activity:AppCompatActivity = view.context as AppCompatActivity

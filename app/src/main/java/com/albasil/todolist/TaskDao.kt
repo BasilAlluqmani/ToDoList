@@ -14,10 +14,10 @@ interface TaskDao {
    @Query("select * From tasks_table ")
     suspend fun getAllTasks() : List<DataTask>
 
+    @Update
+    suspend fun update(task: DataTask)
 
-    @Update()
-    suspend fun update(task: DataTask) {
-    }
+
 
     @Delete
     suspend fun delete(task: DataTask)

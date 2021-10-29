@@ -37,11 +37,7 @@ class TaskVM(context: Application) : AndroidViewModel(context){
     }
 
 
- /*   fun getAllTaskFromList(): List<DataTask>{
 
-        return repo.getAllTaskFromList()
-
-    }*/
     fun insertTask(insertTask: DataTask){
         repo.insertTask(insertTask)
     }
@@ -53,11 +49,13 @@ class TaskVM(context: Application) : AndroidViewModel(context){
 
     }
 
+    fun update(task: DataTask) {
+        viewModelScope.launch {
+            repo.updateTask(task)
+        }
 
-    fun update(update: DataTask ){
-      //repo.editTask()
-}
 
+    }
 
 
    /* fun getAllTasks(): MutableLiveData<List<DataTask>> {

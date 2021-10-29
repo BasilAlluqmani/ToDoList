@@ -61,16 +61,19 @@ class AppRepo(context: Context) {
     }
 
 
-    suspend fun editTask(index: Int, taskTitle:String, taskDec:String, isCeck:Boolean,taskDueDate:String){
+    suspend fun editTask(index: Int, taskTitle:String, taskDec:String, isCheck:Boolean,taskDueDate:String){
         taskList[index].titleTask=taskTitle
         taskList[index].descTask=taskDec
-        taskList[index].ifCheck=isCeck
+        taskList[index].ifCheck=isCheck
         taskList[index].due_date=taskDueDate
 
 
     }
 
-    suspend fun updateTask(task:DataTask){
+
+
+
+    suspend fun updateTask(task: DataTask){
         appDB.taskDao.update(task)
     }
 

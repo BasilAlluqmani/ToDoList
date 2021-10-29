@@ -75,47 +75,41 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val mainViewModel = ViewModelProvider(this).get(TaskVM::class.java)
 
-        linearLayoutBtnTask = view.findViewById(R.id.linearLayoutBtnTask)
+            val mainViewModel = ViewModelProvider(this).get(TaskVM::class.java)
 
-        mainViewModel.fillDB()
+            linearLayoutBtnTask = view.findViewById(R.id.linearLayoutBtnTask)
 
-        rv_recyclerView = view.findViewById(R.id.rv_recyclerView)
+            mainViewModel.fillDB()
 
-
-
-        mainViewModel.getAllTasks().observe(viewLifecycleOwner, {
-            rv_recyclerView.adapter = RecyclerAdapter(it,mainViewModel)
-        })
+            rv_recyclerView = view.findViewById(R.id.rv_recyclerView)
 
 
-
-        rv_recyclerView.layoutManager = LinearLayoutManager(view.context)
-
-        linearLayoutBtnTask.setOnClickListener {
-
-
-            addTaskDailog(mainViewModel)
 
             mainViewModel.getAllTasks().observe(viewLifecycleOwner, {
-                rv_recyclerView.adapter = RecyclerAdapter(it,mainViewModel)
+                rv_recyclerView.adapter = RecyclerAdapter(it, mainViewModel)
             })
 
-            //update list after add
-            // rv_recyclerView.adapter = RecyclerAdapter(mainViewModel.getAllTaskFromList())
+
+
+            rv_recyclerView.layoutManager = LinearLayoutManager(view.context)
+
+            linearLayoutBtnTask.setOnClickListener {
+
+
+                addTaskDailog(mainViewModel)
+
+                mainViewModel.getAllTasks().observe(viewLifecycleOwner, {
+                    rv_recyclerView.adapter = RecyclerAdapter(it, mainViewModel)
+                })
+
+                //update list after add
+                // rv_recyclerView.adapter = RecyclerAdapter(mainViewModel.getAllTaskFromList())
+
+
+            }
 
         }
-
-
-        //show all data
-        //   mainViewModel.getAllTaskFromList()
-        // Log.e("checked", "1 ${mainViewModel.getAllTaskFromList()[0].titleTask}")
-
-
-    }
-
-
     //function to insert to database
     fun insertDateToDatabase(mainViewModel: TaskVM, _taskTitle: String, _taskDecriotion: String) {
         //  val _taskTitle=ed_taksTitle.text.toString()

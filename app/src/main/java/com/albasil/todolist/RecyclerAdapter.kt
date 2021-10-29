@@ -14,9 +14,17 @@ import androidx.recyclerview.widget.RecyclerView
 import com.albasil.todolist.DB.AppRepo
 import com.albasil.todolist.DB.DataTask
 import com.albasil.todolist.Fragment.InformationTaskFragment
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 
 class RecyclerAdapter(private var taskList: List<DataTask>,var mainView:TaskVM) : RecyclerView.Adapter<TaskViewHolder>() {
+
+    // Date
+    val current = LocalDateTime.now()
+    val formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd")
+    val formatted = current.format(formatter)
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {
         val view =
             LayoutInflater.from(parent.context).inflate(R.layout.task_item_layout, parent, false)
@@ -33,16 +41,37 @@ class RecyclerAdapter(private var taskList: List<DataTask>,var mainView:TaskVM) 
 
 //        holder.clickCheckBox.isChecked
 
-        if (task.ifCheck){
+       if (task.ifCheck){
             holder.clickCheckBox.isChecked=true
+
             holder.itemIdXML.setBackgroundColor(Color.GRAY)
 
-
         }else{
+
 
             holder.clickCheckBox.isChecked=false
             holder.itemIdXML.setBackgroundColor(Color.WHITE)
         }
+
+       /* if (task.ifCheck) {
+            holder.clickCheckBox.isChecked = true
+            holder.itemIdXML.setBackgroundColor(Color.GRAY)
+        } else {
+
+            if ( task.due_date >=formatted) {
+                holder.itemIdXML.setBackgroundColor(Color.RED)
+                holder.clickCheckBox.isEnabled = false
+            } else {
+
+                holder.itemIdXML.setBackgroundColor(Color.WHITE)
+
+            }
+
+        }*/
+
+
+
+
         //-----------------------------------------------------------------------------
         holder.clickCheckBox.setOnClickListener { clicked->
 
@@ -61,6 +90,7 @@ class RecyclerAdapter(private var taskList: List<DataTask>,var mainView:TaskVM) 
             }
 
         }
+
 
         holder.itemView.setOnClickListener { view->
 

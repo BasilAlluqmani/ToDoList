@@ -10,9 +10,7 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.lifecycle.ViewModelProvider
 import com.albasil.todolist.DB.DataTask
-import com.albasil.todolist.InformationTaskViewModel
 import com.albasil.todolist.R
-import com.albasil.todolist.task_info
 import kotlinx.android.synthetic.main.information_task_fragment.*
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -70,6 +68,7 @@ class InformationTaskFragment : Fragment() {
 
         // viewModel
         viewModel = ViewModelProvider(this).get(InformationTaskViewModel::class.java)
+
         //to pass data
         val args = arguments
         var inputTask = args?.getParcelable<DataTask>("taskKey")
@@ -84,7 +83,6 @@ class InformationTaskFragment : Fragment() {
         upDate_DueDate=view.findViewById(R.id.btnUpDateDueDate)
 
 
-        // viewModel
         taskDescriptionInfo = view.findViewById(R.id.edTaskDescription)
 
 
@@ -93,6 +91,14 @@ class InformationTaskFragment : Fragment() {
         taskCreationTV.setText(inputTask?.creation_date)
         taskDueDateTV.setText(inputTask?.due_date)
 
+        var dueDate =inputTask?.due_date
+
+        if (formatted>=dueDate.toString()){
+            dueDate
+            formatted
+            taskDueDateTV.text
+            Toast.makeText(context,"its working",Toast.LENGTH_SHORT).show()
+        }
 
         upDate_DueDate.setOnClickListener{
 
@@ -109,25 +115,16 @@ class InformationTaskFragment : Fragment() {
         }
 
         updateTaskButton.setOnClickListener {
-
             if (taskTitleInfo.text.isNotEmpty()){
               inputTask?.let { upDateTask ->
 
-
                   inputTask.titleTask=taskTitleInfo.text.toString()
                   inputTask.due_date=taskDueDateTV.text.toString()
+
                   inputTask.descTask=taskDescriptionInfo.text.toString()
 
                   viewModel.updateTask(inputTask)
 
-
-                 /*   viewModel.updateTask(
-                        dataTask.idTask,
-                        "${taskTitleInfo.text}",
-                        "${taskDescriptionInfo.text}",
-                        dataTask.ifCheck,
-                        "${tvDueDate.text}"
-                    )*/
 
                     activity?.apply {
                         supportFragmentManager.beginTransaction()

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">مهام</string>
+    <string name="ok">حسنا</string>
+    <string name="abuotApp">حول التطبيق</string>
+    <string name="langueage">اللغه</string>
+    <string name="abuot_todolist">حول تطبيق المهام</string>
+    <string name="hello_blank_fragment">مرحبا</string>
+</resources>

@@ -38,12 +38,12 @@ class RecyclerAdapter(private var taskList: List<DataTask>) : RecyclerView.Adapt
             if (holder.clickCheckBox.isChecked){
                 task.ifCheck=true
                 holder.itemIdXML.setBackgroundColor(Color.GRAY)
-                AppRepo(holder.itemView.context).editTask(task.idTask,task.titleTask,task.descTask,true,task.due_date)
+              //  AppRepo(holder.itemView.context).editTask(task.idTask,task.titleTask,task.descTask,true,task.due_date)
 
             }else{
                 task.ifCheck=true
                 holder.itemIdXML.setBackgroundColor(Color.WHITE)
-                AppRepo(holder.itemView.context).editTask(task.idTask,task.titleTask,task.descTask,false,task.due_date)
+               // AppRepo(holder.itemView.context).editTask(task.idTask,task.titleTask,task.descTask,false,task.due_date)
             }
 //---------------------------------------------------------------------------------------
 

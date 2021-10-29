@@ -28,7 +28,6 @@ class MainFragment : Fragment() {
     }
 
 
-
     // Date
     val current = LocalDateTime.now()
     val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
@@ -42,28 +41,24 @@ class MainFragment : Fragment() {
     val year = c.get(Calendar.YEAR)
 
 
-
-
-
     private lateinit var dueDate: String
 
-   private lateinit var linearLayoutBtnTask: LinearLayout
-    private lateinit var  ed_taksTitle: EditText
+    private lateinit var linearLayoutBtnTask: LinearLayout
+    private lateinit var ed_taksTitle: EditText
     private lateinit var ed_taskDescription: EditText
     private lateinit var calendarTask: TextView
 
 
     //Insert to list
-   private lateinit var insertTask: DataTask
+    private lateinit var insertTask: DataTask
 
-    private lateinit var _taskTitle :String
-    private lateinit var _taskDecriotion :String
-    private lateinit var _creationTask :String
-    private lateinit var _dueDateTask:String
+    private lateinit var _taskTitle: String
+    private lateinit var _taskDecriotion: String
+    private lateinit var _creationTask: String
+    private lateinit var _dueDateTask: String
 
 
     private lateinit var rv_recyclerView: RecyclerView
-
 
 
     override fun onCreateView(
@@ -77,92 +72,88 @@ class MainFragment : Fragment() {
     }
 
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         val mainViewModel = ViewModelProvider(this).get(TaskVM::class.java)
 
-
-
-        linearLayoutBtnTask= view.findViewById(R.id.linearLayoutBtnTask)
+        linearLayoutBtnTask = view.findViewById(R.id.linearLayoutBtnTask)
 
         mainViewModel.fillDB()
 
-            rv_recyclerView = view.findViewById(R.id.rv_recyclerView)
+        rv_recyclerView = view.findViewById(R.id.rv_recyclerView)
 
 
 
-            mainViewModel.getAllTasks().observe(viewLifecycleOwner,  {
-                rv_recyclerView.adapter=RecyclerAdapter(it)})
+        mainViewModel.getAllTasks().observe(viewLifecycleOwner, {
+            rv_recyclerView.adapter = RecyclerAdapter(it)
+        })
 
 
 
         rv_recyclerView.layoutManager = LinearLayoutManager(view.context)
 
-
-
-
-
-
         linearLayoutBtnTask.setOnClickListener {
-
 
 
             addTaskDailog(mainViewModel)
 
-            mainViewModel.getAllTasks().observe(viewLifecycleOwner,  {
-                rv_recyclerView.adapter=RecyclerAdapter(it)})
+            mainViewModel.getAllTasks().observe(viewLifecycleOwner, {
+                rv_recyclerView.adapter = RecyclerAdapter(it)
+            })
 
             //update list after add
-           // rv_recyclerView.adapter = RecyclerAdapter(mainViewModel.getAllTaskFromList())
+            // rv_recyclerView.adapter = RecyclerAdapter(mainViewModel.getAllTaskFromList())
 
         }
 
 
         //show all data
-     //   mainViewModel.getAllTaskFromList()
-       // Log.e("checked", "1 ${mainViewModel.getAllTaskFromList()[0].titleTask}")
+        //   mainViewModel.getAllTaskFromList()
+        // Log.e("checked", "1 ${mainViewModel.getAllTaskFromList()[0].titleTask}")
 
 
     }
 
 
-
     //function to insert to database
-  fun insertDateToDatabase(mainViewModel: TaskVM,_taskTitle:String,_taskDecriotion:String) {
-     //  val _taskTitle=ed_taksTitle.text.toString()
+    fun insertDateToDatabase(mainViewModel: TaskVM, _taskTitle: String, _taskDecriotion: String) {
+        //  val _taskTitle=ed_taksTitle.text.toString()
 
         // _taskTitle=ed_taksTitle.text.toString()
         // _taskDecriotion=ed_taskDescription.text.toString()
-         _creationTask=formatted.toString()
-         _dueDateTask=dueDate.toString()
+        _creationTask = formatted.toString()
+        _dueDateTask = dueDate.toString()
 
-        if(inputCheck(_taskTitle,_dueDateTask)){
+        if (inputCheck(_taskTitle, _dueDateTask)) {
 
-            val task =DataTask(titleTask = "$_taskTitle",descTask =  "$_taskDecriotion",creation_date = "$_creationTask", due_date = "$_dueDateTask",ifCheck = false)
+            val task = DataTask(
+                titleTask = "$_taskTitle",
+                descTask = "$_taskDecriotion",
+                creation_date = "$_creationTask",
+                due_date = "$_dueDateTask",
+                ifCheck = false
+            )
 
             mainViewModel.addTask(task)
-            Toast.makeText(context,"Successfully added",Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "Successfully added", Toast.LENGTH_SHORT).show()
 
-        }else{
-            Toast.makeText(context,"Please fill out all fields",Toast.LENGTH_SHORT).show()
+        } else {
+            Toast.makeText(context, "Please fill out all fields", Toast.LENGTH_SHORT).show()
 
         }
     }
 
-    fun inputCheck(_taskTitle:String,_dueDateTask:String):Boolean{
+    fun inputCheck(_taskTitle: String, _dueDateTask: String): Boolean {
 
         return !(TextUtils.isEmpty(_taskTitle) && TextUtils.isEmpty(_dueDateTask))
     }
 
 
-
-
-
-    fun addTaskDailog(mainViewModel:TaskVM) {
+    fun addTaskDailog(mainViewModel: TaskVM) {
         //Inflate the dialog with custom view
         val addTask = android.app.AlertDialog.Builder(view?.context)
+
         val myView: View = layoutInflater.inflate(R.layout.add_tasks, null)
 
         addTask.setView(myView)
@@ -175,10 +166,10 @@ class MainFragment : Fragment() {
         val dateAlerAddTask: TextView = myView.findViewById(R.id.tvDateToday)
         dateAlerAddTask.setText("Date  $formatted")
 
-        var count=AppRepo.nextIdList
-         ed_taksTitle = myView.findViewById(R.id.edtTitleTask)
-         ed_taskDescription = myView.findViewById(R.id.edtDescription)
-         calendarTask = myView.findViewById(R.id.id_calendar)
+        var count = AppRepo.nextIdList
+        ed_taksTitle = myView.findViewById(R.id.edtTitleTask)
+        ed_taskDescription = myView.findViewById(R.id.edtDescription)
+        calendarTask = myView.findViewById(R.id.id_calendar)
 
 
         calendarTask.setOnClickListener {
@@ -206,20 +197,44 @@ class MainFragment : Fragment() {
                 && calendarTask.text.isNotEmpty()
             ) {
                 //delete...
-                Toast.makeText(context, " Title task : ${ed_taksTitle.text}" + " \n Description ${ed_taskDescription.text} \n" + " $formatted \n Due Date $dueDate", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    context,
+                    " Title task : ${ed_taksTitle.text}" + " \n Description ${ed_taskDescription.text} \n" + " $formatted \n Due Date $dueDate",
+                    Toast.LENGTH_SHORT
+                ).show()
 
                 //Insert to list var insertTask
-                 insertTask = DataTask(count,"${ed_taksTitle.text}", "${ed_taskDescription.text}", "$formatted", "$dueDate",false)
+                insertTask = DataTask(
+                    count,
+                    "${ed_taksTitle.text}",
+                    "${ed_taskDescription.text}",
+                    "$formatted",
+                    "$dueDate",
+                    false
+                )
 
                 //mainViewModel.insertTask(insertTask)
 
 
                 //to insert to database
-                insertDateToDatabase(mainViewModel,ed_taksTitle.text.toString(),ed_taskDescription.text.toString())
+                insertDateToDatabase(
+                    mainViewModel,
+                    ed_taksTitle.text.toString(),
+                    ed_taskDescription.text.toString()
+                )
 
 
 
                 mainViewModel.getAllTasks()
+
+
+
+
+                //رتب الكود
+                mainViewModel.getAllTasks().observe(viewLifecycleOwner,  {
+                    rv_recyclerView.adapter=RecyclerAdapter(it)})
+                //search about notifyDataSetChanged
+                rv_recyclerView.adapter?.notifyDataSetChanged()
 
                 //fun Clear
                 clearEditText()
@@ -227,6 +242,10 @@ class MainFragment : Fragment() {
             } else {
                 Toast.makeText(context, " Please Complete  ", Toast.LENGTH_SHORT).show()
             }
+
+
+
+
 
 
 
@@ -246,9 +265,6 @@ class MainFragment : Fragment() {
         calendarTask.setText(null)
 
     }
-
-
-
 
 
 }

@@ -50,13 +50,18 @@ class AppRepo(context: Context) {
 
     }
 
-    fun deleteTask(task: DataTask){
-        //taskList.removeAt(task)
+    suspend fun deleteTask(task: DataTask){
+        appDB.taskDao.delete(task)
 
     }
 
+    suspend fun deleteAllTasks(){
 
-    fun editTask(index: Int, taskTitle:String, taskDec:String, isCeck:Boolean,taskDueDate:String){
+        appDB.taskDao.deleteAllTasks()
+    }
+
+
+    suspend fun editTask(index: Int, taskTitle:String, taskDec:String, isCeck:Boolean,taskDueDate:String){
         taskList[index].titleTask=taskTitle
         taskList[index].descTask=taskDec
         taskList[index].ifCheck=isCeck
@@ -65,9 +70,10 @@ class AppRepo(context: Context) {
 
     }
 
+    suspend fun updateTask(task:DataTask){
+        appDB.taskDao.update(task)
+    }
 
-
-   // private val appDB = AppDataBase.getAppDataBase(context)!!
 
 /*
    suspend fun fillDB() = withContext(Dispatchers.IO) {

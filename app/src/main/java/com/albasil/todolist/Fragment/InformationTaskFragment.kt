@@ -2,9 +2,7 @@ package com.albasil.todolist.Fragment
 
 import android.app.AlertDialog
 import android.app.DatePickerDialog
-import android.content.DialogInterface
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -14,10 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.albasil.todolist.DB.DataTask
 import com.albasil.todolist.InformationTaskViewModel
 import com.albasil.todolist.R
-import kotlinx.android.synthetic.main.add_tasks.*
 import kotlinx.android.synthetic.main.information_task_fragment.*
-import kotlinx.android.synthetic.main.task_item_layout.*
-import kotlinx.coroutines.NonCancellable.cancel
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
@@ -54,7 +49,7 @@ class InformationTaskFragment : Fragment() {
 
 
     private lateinit var deleteTaskButton: ImageButton
-    private lateinit var editTaskButton: ImageButton
+    private lateinit var updateTaskButton: ImageButton
 
     private lateinit var upDate_DueDate: ImageButton
 
@@ -78,7 +73,7 @@ class InformationTaskFragment : Fragment() {
         taskCreationTV = view.findViewById(R.id.tvCreationDate)
         taskDueDateTV = view.findViewById(R.id.tvDueDate)
         deleteTaskButton = view.findViewById(R.id.btnDeleteTask)
-        editTaskButton = view.findViewById(R.id.btnEditTask)
+        updateTaskButton = view.findViewById(R.id.btnEditTask)
         upDate_DueDate=view.findViewById(R.id.btnUpDateDueDate)
 
 
@@ -96,22 +91,7 @@ class InformationTaskFragment : Fragment() {
 
 
         upDate_DueDate.setOnClickListener{
-/*
-            if (formatted.toLong() ==taskDueDateTV.text.toString().toLong() ){
 
-
-                Toast.makeText(context,"if ${formatted.toLong()}  and " +
-                        "${taskDueDateTV.text.toString().toLong()}",Toast.LENGTH_SHORT)
-            }else{
-
-
-                Toast.makeText(context,"elsee   and " +
-                        "${taskDueDateTV.text.toString().toLong()}",Toast.LENGTH_SHORT)
-
-
-            }
-
- */
     calendar()
 
         }
@@ -124,19 +104,32 @@ class InformationTaskFragment : Fragment() {
 
         }
 
-        editTaskButton.setOnClickListener {
+        updateTaskButton.setOnClickListener {
 
 
             if (taskTitleInfo.text.isNotEmpty()){
 
-                inputTask?.let { dataTask ->
-                    viewModel.editTask(
+                var upDateDateTask=DataTask(40,
+                    "${taskTitleInfo}",
+                    "$taskDescriptionInfo",
+                    "${taskCreationTV.text}",
+                    "${taskDueDateTV.text}",false)
+
+
+               // viewModel.updateTask(upDateDateTask)
+
+
+                Toast.makeText(view.context,"T ${upDateDateTask.idTask.toString()}  due${upDateDateTask.due_date}",Toast.LENGTH_SHORT).show()
+
+              /*  inputTask?.let { dataTask ->
+                    viewModel.updateTask(upDataTask)
+                    /*viewModel.editTask(
                         dataTask.idTask,
                         "${taskTitleInfo.text}",
                         "${taskDescriptionInfo.text}",
                         dataTask.ifCheck,
                         "${tvDueDate.text}"
-                    )
+                    )*/
 
                     activity?.apply {
                         supportFragmentManager.beginTransaction()
@@ -145,10 +138,10 @@ class InformationTaskFragment : Fragment() {
                             .commit()
                     }
 
-                }
+                }*/
             }else{
 
-                Toast.makeText(view.context,"Plese Ener Task Title",Toast.LENGTH_SHORT).show()
+                Toast.makeText(view.context,"الرجاء عدم ترك الحقل فارغ",Toast.LENGTH_SHORT).show()
 
             }
 
@@ -164,7 +157,7 @@ class InformationTaskFragment : Fragment() {
     }
 
 
-    fun deletButton(inputTask:DataTask) {
+    fun deletButton(deleteTask:DataTask) {
         AlertDialog.Builder(context)
             .setTitle("Delete")
             .setIcon(R.drawable.ic_baseline_delete_24)
@@ -172,8 +165,11 @@ class InformationTaskFragment : Fragment() {
             .setPositiveButton("Yes"){
                     dialog,_ ->
 
-                inputTask?.let { it->
-                    viewModel.deleteTask(it.idTask)
+                deleteTask?.let { it->
+
+                    viewModel.deleteTask(deleteTask)
+
+                    Toast.makeText(context,"Deleted ${taskTitleInfo.text}",Toast.LENGTH_SHORT).show()
 
 
                     activity?.apply {

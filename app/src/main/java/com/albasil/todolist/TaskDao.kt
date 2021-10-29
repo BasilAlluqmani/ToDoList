@@ -20,8 +20,10 @@ interface TaskDao {
     }
 
     @Delete
-    suspend fun delete(task: DataTask) {
-    }
+    suspend fun delete(task: DataTask)
+
+    @Query("DELETE FROM tasks_table")
+    suspend fun deleteAllTasks()
 
     @Query("select * from tasks_table where idTask== :tId")
     suspend fun selectUserById(tId: Int): DataTask

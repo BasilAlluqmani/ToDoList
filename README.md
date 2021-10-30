@@ -10,6 +10,7 @@
 ---
 I learned to use the recycler view, work with the room database and control the user interfaceو
 Some of the ideas I added to my app:
+
 1 - Language
 2 -AppBar
 

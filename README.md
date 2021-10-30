@@ -16,8 +16,7 @@ Some of the ideas I added to my app:
 
 ## :bulb: Motivation and Context
 ---
-Write your motivation here
-
+Love to learn and achieve
 
 ## :camera_flash: Screenshots
 ---

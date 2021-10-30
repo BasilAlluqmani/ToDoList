@@ -1,6 +1,7 @@
 package com.albasil.todolist.Fragment
 
 //                        Log.e("checked",priority)
+import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.content.DialogInterface
 import android.os.Bundle
@@ -41,7 +42,7 @@ class MainFragment : Fragment() {
     val year = c.get(Calendar.YEAR)
 
 
-    private lateinit var dueDate: String
+    private var dueDate: String =""
 
     private lateinit var linearLayoutBtnTask: LinearLayout
     private lateinit var ed_taksTitle: EditText
@@ -50,10 +51,7 @@ class MainFragment : Fragment() {
 
 
     //Insert to list
-    private lateinit var insertTask: DataTask
 
-    private lateinit var _taskTitle: String
-    private lateinit var _taskDecriotion: String
     private lateinit var _creationTask: String
     private lateinit var _dueDateTask: String
 
@@ -76,15 +74,28 @@ class MainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-            val mainViewModel = ViewModelProvider(this).get(TaskVM::class.java)
+        val mainViewModel = ViewModelProvider(this).get(TaskVM::class.java)
 
-            linearLayoutBtnTask = view.findViewById(R.id.linearLayoutBtnTask)
+        linearLayoutBtnTask = view.findViewById(R.id.linearLayoutBtnTask)
 
-            mainViewModel.fillDB()
+        mainViewModel.fillDB()
 
-            rv_recyclerView = view.findViewById(R.id.rv_recyclerView)
+        rv_recyclerView = view.findViewById(R.id.rv_recyclerView)
 
 
+
+        mainViewModel.getAllTasks().observe(viewLifecycleOwner, {
+            rv_recyclerView.adapter = RecyclerAdapter(it, mainViewModel)
+        })
+
+
+
+        rv_recyclerView.layoutManager = LinearLayoutManager(view.context)
+
+        linearLayoutBtnTask.setOnClickListener {
+
+
+            addTaskDailog(mainViewModel)
 
             mainViewModel.getAllTasks().observe(viewLifecycleOwner, {
                 rv_recyclerView.adapter = RecyclerAdapter(it, mainViewModel)
@@ -92,30 +103,13 @@ class MainFragment : Fragment() {
 
 
 
-            rv_recyclerView.layoutManager = LinearLayoutManager(view.context)
-
-            linearLayoutBtnTask.setOnClickListener {
-
-
-                addTaskDailog(mainViewModel)
-
-                mainViewModel.getAllTasks().observe(viewLifecycleOwner, {
-                    rv_recyclerView.adapter = RecyclerAdapter(it, mainViewModel)
-                })
-
-                //update list after add
-                // rv_recyclerView.adapter = RecyclerAdapter(mainViewModel.getAllTaskFromList())
-
-
-            }
-
         }
+
+    }
+
     //function to insert to database
     fun insertDateToDatabase(mainViewModel: TaskVM, _taskTitle: String, _taskDecriotion: String) {
-        //  val _taskTitle=ed_taksTitle.text.toString()
 
-        // _taskTitle=ed_taksTitle.text.toString()
-        // _taskDecriotion=ed_taskDescription.text.toString()
         _creationTask = formatted.toString()
         _dueDateTask = dueDate.toString()
 
@@ -130,7 +124,6 @@ class MainFragment : Fragment() {
             )
 
             mainViewModel.addTask(task)
-            Toast.makeText(context, "Successfully added", Toast.LENGTH_SHORT).show()
 
         } else {
             Toast.makeText(context, "Please fill out all fields", Toast.LENGTH_SHORT).show()
@@ -151,16 +144,14 @@ class MainFragment : Fragment() {
         val myView: View = layoutInflater.inflate(R.layout.add_tasks, null)
 
         addTask.setView(myView)
-        addTask.setTitle("Add Task")
+        addTask.setTitle(getString(R.string.add_task))
 
         val Save: Button = myView.findViewById(R.id.btnSave)
-        val cancel: Button = myView.findViewById(R.id.btnCancel)
 
 
         val dateAlerAddTask: TextView = myView.findViewById(R.id.tvDateToday)
-        dateAlerAddTask.setText("Date  $formatted")
+        dateAlerAddTask.setText("${getString(R.string.date) } $formatted")
 
-        var count = AppRepo.nextIdList
         ed_taksTitle = myView.findViewById(R.id.edtTitleTask)
         ed_taskDescription = myView.findViewById(R.id.edtDescription)
         calendarTask = myView.findViewById(R.id.id_calendar)
@@ -170,86 +161,58 @@ class MainFragment : Fragment() {
             val datePickerDialog = DatePickerDialog(
                 requireView().context,
                 DatePickerDialog.OnDateSetListener { view, y, m, d ->
-                    dueDate = "$y/${m + 1}/$d"
+                    dueDate = "$y-${m + 1}-$d"
                     calendarTask.setText(dueDate)
-                },
-                year,
-                month,
-                day
-            )
+                }, year, month, day)
             datePickerDialog.datePicker.minDate = c.timeInMillis
             datePickerDialog.show()
 
         }
 
-
-
-
         Save.setOnClickListener {
 
-            if (ed_taksTitle.text.isNotEmpty()
-                && calendarTask.text.isNotEmpty()
-            ) {
-                //delete...
-                Toast.makeText(
-                    context,
-                    " Title task : ${ed_taksTitle.text}" + " \n Description ${ed_taskDescription.text} \n" + " $formatted \n Due Date $dueDate",
-                    Toast.LENGTH_SHORT
-                ).show()
-
-                //Insert to list var insertTask
-                insertTask = DataTask(
-                    count,
-                    "${ed_taksTitle.text}",
-                    "${ed_taskDescription.text}",
-                    "$formatted",
-                    "$dueDate",
-                    false
-                )
-
-                //mainViewModel.insertTask(insertTask)
+            if (ed_taksTitle.text.isNotEmpty()) {
+                if (dueDate.isNotEmpty()) {
 
 
-                //to insert to database
-                insertDateToDatabase(
-                    mainViewModel,
-                    ed_taksTitle.text.toString(),
-                    ed_taskDescription.text.toString()
-                )
+                    //to insert to database
+                    insertDateToDatabase(
+                        mainViewModel,
+                        ed_taksTitle.text.toString(),
+                        ed_taskDescription.text.toString()
+                    )
+
+                    //upDate DataBase
+                    mainViewModel.getAllTasks()
+                    //رتب الكود
+                    mainViewModel.getAllTasks().observe(viewLifecycleOwner, {
+                        rv_recyclerView.adapter = RecyclerAdapter(it, mainViewModel)
+                    })
+                    //search about notifyDataSetChanged
+                    rv_recyclerView.adapter?.notifyDataSetChanged()
+
+                    //fun Clear
+                    clearEditText()
+
+                    Toast.makeText(context, getString(R.string.addeaTask), Toast.LENGTH_SHORT).show()
+
+                }else{
+                    Toast.makeText(context, getString(R.string.Please_enter_duedate), Toast.LENGTH_SHORT).show()
+
+                }
 
 
-
-                mainViewModel.getAllTasks()
-
-
-
-
-                //رتب الكود
-                mainViewModel.getAllTasks().observe(viewLifecycleOwner,  {
-                    rv_recyclerView.adapter=RecyclerAdapter(it,mainViewModel)})
-                //search about notifyDataSetChanged
-                rv_recyclerView.adapter?.notifyDataSetChanged()
-
-                //fun Clear
-                clearEditText()
-                count++
             } else {
-                Toast.makeText(context, " Please Complete  ", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context,  getString(R.string.Please_enter_task_title), Toast.LENGTH_SHORT).show()
             }
-
-
-
-
-
 
 
         }
 
         addTask.setNegativeButton(
-            "Cancel",
+            getString(R.string.Cancel),
             DialogInterface.OnClickListener { dialog, which -> dialog.cancel() })
         addTask.show()//.window?.setBackgroundDrawableResource(R.drawable.ic_launcher_foreground)
-
     }
 
     private fun clearEditText() {

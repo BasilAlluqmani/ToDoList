@@ -26,7 +26,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
+                android:orientation="horizontal"
                 android:padding="10dp">
 
                 <TextView
@@ -40,7 +40,6 @@
                 <EditText
                     android:id="@+id/edTaskTitle"
                     android:layout_width="match_parent"
-                    android:background="@color/white"
 
                     android:layout_height="wrap_content"
                     android:padding="10dp"
@@ -52,10 +51,11 @@
 
             </LinearLayout>
 
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
+                android:orientation="horizontal"
 
                 android:padding="10dp">
 
@@ -71,22 +71,22 @@
                 <EditText
 
                     android:id="@+id/edTaskDescription"
-                    android:background="@color/white"
 
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/note"
-                    android:lines="5"
+                    android:lines="7"
                     android:padding="10dp"
+                    android:text="@string/note"
                     android:textColor="@color/black"
                     android:textSize="15sp" />
 
             </LinearLayout>
 
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
+                android:orientation="horizontal"
 
                 android:padding="10dp">
 
@@ -104,45 +104,49 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="10dp"
-                    android:gravity="center"
                     android:text="@string/_2020_02_02"
                     android:textColor="@color/black"
-                    android:background="@color/white"
-
                     android:textSize="20sp" />
 
             </LinearLayout>
 
-            <LinearLayout
+
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
                 android:padding="10dp">
 
                 <TextView
                     android:id="@+id/textView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="20dp"
                     android:text="@string/due_date"
                     android:textColor="@color/black"
                     android:textSize="20sp"
+                    android:layout_marginRight="20dp"
 
-                    />
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <LinearLayout
-                    android:id="@+id/linearLayout_duedete"
-                    android:background="@color/white"
+                    android:layout_marginLeft="20dp"
 
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
+                    android:id="@+id/linearLayout_duedete"
                     android:layout_height="wrap_content"
-                    android:gravity="center">
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/textView"
+                    tools:layout_editor_absoluteY="10dp">
 
                     <TextView
                         android:id="@+id/tvDueDate"
                         android:layout_width="wrap_content"
 
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="36dp"
+                        android:layout_marginRight="5dp"
                         android:padding="10dp"
                         android:text="@string/_2021_10_30"
                         android:textColor="@color/black"
@@ -154,36 +158,22 @@
                         android:id="@+id/btnUpDateDueDate"
                         android:layout_width="40dp"
                         android:layout_height="50dp"
+                        android:layout_marginLeft="50dp"
                         android:src="@drawable/ic_baseline_calendar_today_24" />
+
                 </LinearLayout>
 
-            </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
 
         </LinearLayout>
 
         <!--            android:enabled="false"-->
 
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:layout_marginTop="200dp"
-            android:gravity="center"
-            android:text="@string/msa"
-            android:textSize="25sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.473"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-            app:layout_constraintVertical_bias="0.0" />
-
         <ImageView
             android:id="@+id/btnDeleteTask"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:layout_marginStart="68dp"
             android:layout_marginBottom="28dp"
 
@@ -198,8 +188,8 @@
 
         <ImageView
             android:id="@+id/btnEditTask"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:layout_marginBottom="28dp"
             android:src="@drawable/ic_baseline_edit_24"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -208,6 +198,22 @@
             app:layout_constraintStart_toEndOf="@+id/btnDeleteTask"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout"
             app:layout_constraintVertical_bias="1.0" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="120dp"
+            android:layout_margin="15dp"
+            android:textSize="35sp"
+            android:gravity="center"
+            android:text="If you can dream it , you can do it"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+            app:layout_constraintVertical_bias="0.035" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

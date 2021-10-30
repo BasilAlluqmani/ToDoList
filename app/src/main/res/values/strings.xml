@@ -6,4 +6,30 @@
     <string name="langueage">Langueage</string>
     <string name="abuotApp">abuot_todolist</string>
     <string name="ok">OK</string>
+    <string name="add_task">Add Task</string>
+    <string name="date">Date :</string>
+    <string name="save">Save</string>
+    <string name="task_title">Task Title :</string>
+    <string name="enter_title_task">Enter Title Task</string>
+    <string name="task_description">Task Description :</string>
+    <string name="enter_task_description">Enter Task Description</string>
+    <string name="due_date">Due Date </string>
+    <string name="Cancel">Cancel </string>
+    <string name="note">note ....</string>
+    <string name="creation_date">Creation Date:</string>
+    <string name="_2020_02_02">2020/02/02</string>
+    <string name="_2021_10_30">2021/10/30</string>
+    <string name="delete">Delete</string>
+    <string name="no">NO</string>
+    <string name="Please_enter_task_title">Please enter task title!</string>
+    <string name="Please_enter_duedate">Please enter  due date!</string>
+
+    <string name="Do_want_delete_this_task">Do want delete this task?!</string>
+    <string name="yes">YES</string>
+    <string name="message">    Sorry .. The task time has passed .. You could create another task if you want ..</string>
+    <string name="Sorry" />
+    <string name="msa">If you can dream it , you can do it :)</string>
+    <string name="addeaTask">"Task Added "</string>
+
+
 </resources>

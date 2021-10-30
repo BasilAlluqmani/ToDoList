@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="ok">OK</string>
+    <string name="task_description">Task Description :</string>
+    <string name="note">note ....</string>
+    <string name="creation_date">Creation Date:</string>
+    <string name="_2020_02_02">2020/02/02</string>
+    <string name="_2021_10_30">2021/10/30</string>
+    <string name="delete">Delete</string>
 </resources>

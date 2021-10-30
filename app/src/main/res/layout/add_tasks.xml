@@ -1,17 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+
+    android:layout_margin="5dp"
+
+    android:background="@color/teal_200"
     android:padding="10dp">
 
     <TextView
         android:id="@+id/tvDateToday"
-        android:textSize="20dp"
+        android:textSize="25sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Date :" />
+        android:layout_marginBottom="10dp"
+        android:text="@string/date" />
 
 
 
@@ -19,20 +24,26 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+
         android:orientation="horizontal">
         <TextView
+            android:textSize="25sp"
             android:layout_width="wrap_content"
+            android:gravity="center"
             android:layout_height="wrap_content"
-            android:text="Title Task :" />
+            android:text="@string/task_title" />
 
 
 
         <EditText
+            android:layout_marginStart="5dp"
+
             android:id="@+id/edtTitleTask"
             android:textSize="25sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter Title Task"
+            android:hint="@string/enter_title_task"
             android:imeOptions="actionDone"
             android:inputType="textPersonName" />
     </LinearLayout>
@@ -43,21 +54,26 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Title Task :" />
+        android:layout_marginBottom="15dp"
 
-    <EditText
-        android:textSize="20dp"
-        android:id="@+id/edtDescription"
-        android:hint="Enter Description Title"
-        android:inputType="textAutoComplete"
-        android:imeOptions="actionDone"
-        android:layout_width="match_parent"
-        android:lines="7"
-        android:layout_height="wrap_content" />
+        android:orientation="horizontal">
+        <TextView
+            android:textSize="20sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/task_description" />
+
+        <EditText
+            android:textSize="20sp"
+            android:layout_marginStart="5dp"
+
+            android:id="@+id/edtDescription"
+            android:hint="@string/enter_task_description"
+            android:inputType="textAutoComplete"
+            android:imeOptions="actionDone"
+            android:layout_width="match_parent"
+            android:lines="7"
+            android:layout_height="wrap_content" />
     </LinearLayout>
 
 
@@ -65,45 +81,48 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_marginBottom="15dp"
+
         android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0"
-            android:textSize="20dp"
-            android:text="Due date:" />
+            android:textSize="20sp"
+            android:text="@string/due_date" />
 
         <TextView
-            android:textSize="20dp"
+            android:textSize="20sp"
             android:gravity="center"
-            android:layout_marginLeft="20dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="20dp"
             android:id="@+id/id_calendar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="date" />
+            android:text="@string/due_date" />
     </LinearLayout>
 
 
     <LinearLayout
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+
         android:gravity="center">
         <Button
+
             android:id="@+id/btnSave"
-            android:text="Save"
+            android:text="@string/save"
+            android:radius="30dp"
+
+            android:textSize="30sp"
             style="@style/Base.Widget.AppCompat.Button.Colored"
-            android:layout_width="wrap_content"
+            android:layout_width="300dp"
             android:layout_height="wrap_content" />
-        <Button
-            android:id="@+id/btnCancel"
-            android:text="Cancel"
-            style="@style/Base.Widget.AppCompat.Button.Colored"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+
     </LinearLayout>
 
 

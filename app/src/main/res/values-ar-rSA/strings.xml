@@ -6,4 +6,32 @@
     <string name="langueage">اللغه</string>
     <string name="abuot_todolist">حول تطبيق المهام</string>
     <string name="hello_blank_fragment">مرحبا</string>
+
+    <string name="task_title">عنوان المهمة</string>
+    <string name="enter_title_task">ادخل عنوان المهمة</string>
+    <string name="task_description">وصف المهمة</string>
+    <string name="enter_task_description">ادخل وصف المهمة</string>
+    <string name="due_date">تاريخ الاستحقاق</string>
+    <string name="note">ملاحظه ...</string>
+    <string name="creation_date">تاريخ الانشاء</string>
+    <string name="_2020_02_02">2020/02/02</string>
+    <string name="_2021_10_30">2021/10/30</string>
+    <string name="delete">حذف</string>
+    <string name="add_task">إضافة مهمة</string>
+    <string name="save">حفظ</string>
+    <string name="Cancel">إلغاء </string>
+
+    <string name="date">تاريخ:</string>
+
+    <string name="no">لا</string>
+    <string name="Please_enter_task_title">الرجاء إدخال عنوان المهمة !</string>
+    <string name="Please_enter_duedate">الرجاء إدخال تاريخ الأستحقاق !</string>
+    <string name="Do_want_delete_this_task">هل تريد حذف هذه المهمة ؟!</string>
+    <string name="yes">نعم</string>
+    <string name="message">معذرة .. لقد انقضى وقت المهمة .. يمكنك إنشاء مهمة أخرى إذا أردت ..</string>
+    <string name="Sorry"> المعذرة!!!</string>
+    <string name="msa"> لو حلمت به، ستفعله :)</string>
+    <string name="addeaTask">"تمت إضافة المهمة"</string>
+
+
 </resources>

@@ -5,26 +5,32 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/teal_700"
     tools:context=".Fragment.MainFragment">
 
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayoutBtnTask"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:itemCount="100"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintVertical_bias="0.0"
+        tools:layout_editor_absoluteX="0dp">
 
     </androidx.recyclerview.widget.RecyclerView>
-
 
     <LinearLayout
         android:id="@+id/linearLayoutBtnTask"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-android:background="@color/teal_700"
-        android:layout_marginBottom="28dp"
+        android:background="@color/teal_200"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="@+id/rv_recyclerView"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -32,8 +38,8 @@ android:background="@color/teal_700"
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-android:layout_margin="5dp"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_margin="5dp">
 
             <TextView
                 android:id="@+id/textView2"
@@ -41,8 +47,10 @@ android:layout_margin="5dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
 
-                android:text="Add Task"
-                android:textSize="30dp"
+
+                android:text="@string/add_task"
+                android:textSize="35sp"
+                android:textColor="@color/black"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -52,6 +60,9 @@ android:layout_margin="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="172dp"
+                android:outlineSpotShadowColor="@color/white"
+                android:outlineAmbientShadowColor="@color/white"
+
                 android:src="@drawable/ic_note_add_24"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

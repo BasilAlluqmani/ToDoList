@@ -9,11 +9,5 @@
         android:icon="@drawable/ic_baseline_app_shortcut_24"
         app:showAsAction="never"/>
 
-    <item
-        android:id="@+id/id_localizations"
-        android:title="@string/langueage"
-        android:icon="@drawable/ic_baseline_language_24"
-        app:showAsAction="never"/>
-
 
 </menu>

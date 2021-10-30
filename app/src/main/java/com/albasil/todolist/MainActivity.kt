@@ -51,11 +51,11 @@ class MainActivity : AppCompatActivity() {
                         dialog.dismiss()
                     }.create().show()
                 return true
-            }R.id.id_localizations -> {
+            }/*R.id.id_localizations -> {
 
                 Toast.makeText(this,"Loclizition",Toast.LENGTH_SHORT).show()
                 return true
-            }else -> return true
+            }*/else -> return true
         }
     }
 

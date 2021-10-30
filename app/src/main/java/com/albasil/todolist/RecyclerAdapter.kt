@@ -22,7 +22,7 @@ class RecyclerAdapter(private var taskList: List<DataTask>,var mainView:TaskVM) 
 
     // Date
     val current = LocalDateTime.now()
-    val formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd")
+    val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
     val formatted = current.format(formatter)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {
@@ -39,45 +39,37 @@ class RecyclerAdapter(private var taskList: List<DataTask>,var mainView:TaskVM) 
         holder.taskCreaiton.text = task.creation_date
         holder.taskDue.text =task.due_date
 
-//        holder.clickCheckBox.isChecked
 
-       if (task.ifCheck){
+      if (task.ifCheck){
             holder.clickCheckBox.isChecked=true
-
-            holder.itemIdXML.setBackgroundColor(Color.GRAY)
+          holder.taskTitle.setTextColor(Color.WHITE)
+          holder.itemIdXML.setBackgroundColor(Color.CYAN)
 
         }else{
 
+            if (task.due_date < formatted){
+                holder.itemIdXML.setBackgroundColor(Color.DKGRAY)
 
-            holder.clickCheckBox.isChecked=false
-            holder.itemIdXML.setBackgroundColor(Color.WHITE)
-        }
-
-       /* if (task.ifCheck) {
-            holder.clickCheckBox.isChecked = true
-            holder.itemIdXML.setBackgroundColor(Color.GRAY)
-        } else {
-
-            if ( task.due_date >=formatted) {
-                holder.itemIdXML.setBackgroundColor(Color.RED)
                 holder.clickCheckBox.isEnabled = false
-            } else {
+            }else if(task.due_date == formatted){
 
+                holder.taskTitle.setTextColor(Color.YELLOW)
+                holder.itemIdXML.setBackgroundColor(Color.GRAY)
+
+            }else{
                 holder.itemIdXML.setBackgroundColor(Color.WHITE)
+                holder.taskTitle.setTextColor(Color.BLACK)
 
             }
-
-        }*/
-
-
-
+        }
 
         //-----------------------------------------------------------------------------
         holder.clickCheckBox.setOnClickListener { clicked->
 
             if (holder.clickCheckBox.isChecked){
                 task.ifCheck=true
-                holder.itemIdXML.setBackgroundColor(Color.GRAY)
+           holder.taskTitle.setTextColor(Color.WHITE)
+                holder.itemIdXML.setBackgroundColor(Color.CYAN)
 
                 mainView.update(task)
 
@@ -85,11 +77,21 @@ class RecyclerAdapter(private var taskList: List<DataTask>,var mainView:TaskVM) 
                 task.ifCheck=false
 
                 holder.itemIdXML.setBackgroundColor(Color.WHITE)
+                holder.taskTitle.setTextColor(Color.BLACK)
+
+                if(task.due_date == formatted){
+                    holder.taskTitle.setTextColor(Color.YELLOW)
+                    holder.itemIdXML.setBackgroundColor(Color.GRAY)
+
+                }
+
                 mainView.update(task)
 
             }
 
+
         }
+
 
 
         holder.itemView.setOnClickListener { view->
@@ -102,8 +104,7 @@ class RecyclerAdapter(private var taskList: List<DataTask>,var mainView:TaskVM) 
             bundle.putParcelable("taskKey",task)
             activity.supportFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container,fragment)
-                .addToBackStack("Test")
-                .commit()
+                .addToBackStack("Test").commit()
         }
 
 
@@ -122,8 +123,8 @@ class TaskViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.O
     val taskCreaiton : TextView =  itemView.findViewById(R.id.tv_creationDate)//اعدل
     val taskDue:TextView= itemView.findViewById(R.id.tv_dueDate)//اعدل
 
-    var clickCheckBox : CheckBox=itemView.findViewById(R.id.checkBoxClick)
 
+    var clickCheckBox : CheckBox=itemView.findViewById(R.id.checkBoxClick)
     var itemIdXML:ConstraintLayout= itemView.findViewById(R.id.itemId)
 
 

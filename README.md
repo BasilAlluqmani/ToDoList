@@ -8,8 +8,10 @@
 
 ## :scroll: Description
 ---
-This is my application description, what you have learned and what you, and what the ideas you have added in this app 
-
+I learned to use the recycler view, work with the room database and control the user interfaceو
+Some of the ideas I added to my app:
+1 - Language
+2 -AppBar
 
 ## :bulb: Motivation and Context
 ---

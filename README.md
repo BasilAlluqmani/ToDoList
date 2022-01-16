@@ -8,10 +8,12 @@ Create an Android To Do List application.
 #### **Your To Do Application must display tasks in a list.**
 
 ## **Used Technologies**
-- Room Database
-- RecyclerView
-- Fragments
-- Localization
+-The task’s title.
+-An indication of whether the task is completed.
+-The tasks due date.
+-The creation date.
+-All of the information listed above
+-An extended description where the user can provide more details about the task.
 
 
 ## **Project completion**

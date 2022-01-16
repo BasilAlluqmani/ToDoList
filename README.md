@@ -4,15 +4,15 @@
 Create an Android To Do List application.
 
 ## **Requirements**
-### Your To Do Application must display tasks in a list.
 
+# Your To Do Application must display tasks in a list.
 
-The task’s title.
-An indication of whether the task is completed.
-The tasks due date, [text or image].
-The creation date
-All of the information listed above
-An extended description where the user can provide more details about the task
+-The task’s title.
+-An indication of whether the task is completed.
+-The tasks due date.
+-The creation date.
+-All of the information listed above
+-An extended description where the user can provide more details about the task.
 
 ## **Project completion**
 You have five days to complete this assignment.

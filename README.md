@@ -18,13 +18,6 @@ Create an Android To Do List application.
 You have five days to complete this assignment.
 
 
-## **Users Stories**
-
-- As a user, I want to post my content to share my lifestyle or knowledge by posting content
-- As a user, I want to view others posts to enjoy
-- As a user, I want to add images to my posts to make it more intresting
-- As a user, I want to add a photo to my profile to personalize it.
-
 ## **Used Technologies**
 - Room Database
 - RecyclerView

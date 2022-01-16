@@ -26,7 +26,7 @@ You have five days to complete this assignment.
 
 
 ## **Final App 🎉**
-![Tuwaiq Academy Logo](https://d.top4top.io/p_220499tj70.jpg)
+![Tuwaiq Academy Logo](https://user-images.githubusercontent.com/91476827/149672946-2f98fbd4-1a02-4c67-b9db-db795e6efd20.jpg)
 
 
 

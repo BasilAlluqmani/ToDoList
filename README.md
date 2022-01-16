@@ -6,8 +6,6 @@ Create an Android To Do List application.
 ## **Requirements**
 
 #### **Your To Do Application must display tasks in a list.**
-
-## **Used Technologies**
 - The task’s title.
 - An indication of whether the task is completed.
 - The tasks due date.
